@@ -38,10 +38,7 @@ function gcd(a, b) {
 }
 
 var a=24;
-
-ask("GCD of 24 and", /^\d+$/, function(b_str) {
-    var b = parseInt(b_str, 10);
-    console.log(util.format("The GCD of %d and %d is %d", a, b,
-			    gcd(a, b)));
-    process.exit();
-});
+var b=5;
+console.log(util.format("The GCD of %d and %d is %d", a, b,
+			gcd(a, b)));
+process.exit();
