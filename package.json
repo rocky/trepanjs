@@ -1,0 +1,26 @@
+{
+  "name": "trepanjs",
+  "version": "1.0.0",
+  "description": "A gdb-like debugger for nodejs. It is in the style of the trepanning debuggers.",
+  "main": "lib/main.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.org/rocky/trepanjs"
+  },
+  "bin": {
+    "trepanjs": "./bin/trepanjs"
+  },
+  "keywords": [
+    "debugger",
+    "gdb",
+    "trepan"
+  ],
+  "author": "Rocky Bernstein <rocky@gnu.org>",
+  "license": "ISC"
+}

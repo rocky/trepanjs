@@ -902,7 +902,7 @@ function trimWhitespace(cmd) {
 
 
 function regexpEscape(s) {
-  return s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+  return s.replace(/[-\[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
 }
 
 
