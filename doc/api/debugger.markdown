@@ -8,7 +8,7 @@ V8 comes with an extensive debugger which is accessible out-of-process
 via a simple
 [TCP protocol](http://code.google.com/p/v8/wiki/DebuggerProtocol).  I
 have forked the built-in debugger client in nodejs to adapt it to be
-more featureful and follow the gdb and trepan command set better.
+more featureful and follow the *gdb* and *trepan* command set better.
 
 
 # Example
@@ -71,11 +71,11 @@ Then once the debugger is run, it will break on line 4.
     %
 
 As shown above, we use the debugger command `cont` instead of the gdb
-command `continue` becuase *continue* is a Javascript reserved word.
+command `continue` because *continue* is a Javascript reserved word.
 
 The `shell` command allows you to evaluate code remotely. Right now,
 leaving the Javascript REPL leaves the debugger as well. Without going
-into a fill REPL as the *shell* command di, you can force evaluation
+into a fill REPL as the *shell* command , you can force evaluation
 using the debugger's *eval()* command, e.g. `eval('x')
 
 The `next` command steps over to the next line. There are a few other
@@ -163,11 +163,11 @@ breakpoint)
 
 ## Advanced Usage
 
-The V8 debugger can be enabled and accessed either by starting the trepanjs
-sciprt or by signaling an existing Node process with `SIGUSR1`.
+The V8 debugger can be enabled and accessed either by starting via *trepanjs*
+or by signaling an existing Node process with `SIGUSR1`.
 
 Once a process has been set in debug mode with this it can be connected to
-with the trepanjsger. Either connect to the `pid` or the URI to the debugger.
+with trepanjs. Either connect to the `pid` or the URI to the debugger.
 The syntax is:
 
 * `trepanjs -p <pid>` &ndash; Connects to the process via the `pid`
@@ -176,7 +176,7 @@ The syntax is:
 # Differences from gdb and the Trepanning debugger family
 
 For those that are used to the *nodejs* debugger command set, note that I've added an
-*alias* command you used to get those other names in. Here is a table if differences:
+*alias* command you used to get those other names in. Here is a table of differences:
 
 <table>
   <tr>
@@ -199,9 +199,9 @@ For those that are used to the *nodejs* debugger command set, note that I've add
 
 Over time this table may grow, and the differences between this and
 other trepan debugger shrink. There is a ways to go to get this be
-more like gdb.
+more like *gdb*.
 
-Afew general observtions. The most obvious difference is that commands
+A few general observations. The most obvious difference is that commands
 that get evaluated are Javascript commands. So when you need to pass
 arguments to a debugger command you enclose it in parenthesis.  For
 example:
