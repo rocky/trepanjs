@@ -152,8 +152,7 @@ breakpoint)
 * `run` &ndash; Run script (automatically runs on debugger's start)
 * `restart` &ndash; Restart script
 * `kill` &ndash; Kill child Javascript process
-* `quit` `q`, &ndash; terminate debugger
-* `exit` &ndash like `quit` but you pass a return code
+* `quit` `q`, `exit` &ndash; terminate debugger
 
 ### Various
 
