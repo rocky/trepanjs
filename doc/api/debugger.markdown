@@ -11,7 +11,7 @@ have forked the built-in debugger client in nodejs to adapt it to be
 more featureful and follow the *gdb* and *trepan* command set better.
 
 
-# Example
+## Example
 
 To use this debugger, run the `trepanjs` script. For example:
 
@@ -172,7 +172,7 @@ The syntax is:
 * `trepanjs -p <pid>` &ndash; Connects to the process via the `pid`
 * `trepanjs <URI>` &ndash; Connects to the process via the URI such as localhost:5858
 
-# Differences from gdb and the Trepanning debugger family
+## Differences from gdb and the Trepanning debugger family
 
 For those that are used to the *nodejs* debugger command set, note that I've added an
 *alias* command you used to get those other names in. Here is a table of differences:
