@@ -96,21 +96,21 @@ prints the active watchers. To remove a watcher, type
 
 ### Stepping Commands
 
-* `cont`, `c` &mdash; Continue execution
-* `next`, `n` &mdash; Step over
-* `step`, `s` &mdash; Step in
-* `finish`, &mdash; Step out
-* `pause` &mdash; Pause running code (like pause button in Developer Tools)
+* `cont`, `c` &ndash; Continue execution
+* `next`, `n` &ndash; Step over
+* `step`, `s` &ndash; Step in
+* `finish`, &ndash; Step out
+* `pause` &ndash; Pause running code (like pause button in Developer Tools)
 
 ### Breakpoints
 
-* `setBreakpoint()`, `sb()` &mdash; Set breakpoint on current line
-* `setBreakpoint(line)`, `sb(line)` &mdash; Set breakpoint on specific line
-* `setBreakpoint('fn()')`, `sb(...)` &mdash; Set breakpoint on a first statement in
+* `setBreakpoint()`, `sb()` &ndash; Set breakpoint on current line
+* `setBreakpoint(line)`, `sb(line)` &ndash; Set breakpoint on specific line
+* `setBreakpoint('fn()')`, `sb(...)` &ndash; Set breakpoint on a first statement in
 functions body
-* `setBreakpoint('script.js', 1)`, `sb(...)` &mdash; Set breakpoint on first line of
+* `setBreakpoint('script.js', 1)`, `sb(...)` &ndash; Set breakpoint on first line of
 script.js
-* `clearBreakpoint`, `cb(...)` &mdash; Clear breakpoint
+* `clearBreakpoint`, `cb(...)` &ndash; Clear breakpoint
 
 It is also possible to set a breakpoint in a file (module) that
 isn't loaded yet:
@@ -138,28 +138,28 @@ isn't loaded yet:
 
 ### Info
 
-* `backtrace`, `bt` &mdash; Print backtrace of current execution frame
-* `list(5)` &mdash; List scripts source code with 5 line context (5 lines before and
+* `backtrace`, `bt` &ndash; Print backtrace of current execution frame
+* `list(5)` &ndash; List scripts source code with 5 line context (5 lines before and
 4 after)
-* `watch(expr)` &mdash; Add expression to watch list
-* `unwatch(expr)` &mdash; Remove expression from watch list
-* `watchers` &mdash; List all watchers and their values (automatically listed on each
+* `watch(expr)` &ndash; Add expression to watch list
+* `unwatch(expr)` &ndash; Remove expression from watch list
+* `watchers` &ndash; List all watchers and their values (automatically listed on each
 breakpoint)
-* `shell` &mdash; Open node repl but evaluation is in debugging script's context.
+* `shell` &ndash; Open node repl but evaluation is in debugging script's context.
 
 ### Execution control
 
-* `run` &mdash; Run script (automatically runs on debugger's start)
-* `restart` &mdash; Restart script
-* `kill` &mdash; Kill child Javascript process
-* `quit` `q`, &mdash; terminate debugger
-* `exit` &mdash like `quit` but you pass a return code
+* `run` &ndash; Run script (automatically runs on debugger's start)
+* `restart` &ndash; Restart script
+* `kill` &ndash; Kill child Javascript process
+* `quit` `q`, &ndash; terminate debugger
+* `exit` &ndash like `quit` but you pass a return code
 
 ### Various
 
-* `infoFiles` &mdash; List all loaded scripts
-* `showArgs` &mdash; debugged program invocation arguments. These are used on `run` and `restart`
-* `version` &mdash Display v8's version
+* `infoFiles` &ndash; List all loaded scripts
+* `showArgs` &ndash; debugged program invocation arguments. These are used on `run` and `restart`
+* `version` &ndash Display v8's version
 
 ## Advanced Usage
 
@@ -170,8 +170,8 @@ Once a process has been set in debug mode with this it can be connected to
 with the trepanjsger. Either connect to the `pid` or the URI to the debugger.
 The syntax is:
 
-* `trepanjs -p <pid>` &mdash; Connects to the process via the `pid`
-* `trepanjs <URI>` &mdash; Connects to the process via the URI such as localhost:5858
+* `trepanjs -p <pid>` &ndash; Connects to the process via the `pid`
+* `trepanjs <URI>` &ndash; Connects to the process via the URI such as localhost:5858
 
 # Differences from gdb and the Trepanning debugger family
 
@@ -199,7 +199,7 @@ What's going on here is the debugger is reporting that `list` is a
 valid function; you need to invoke it with parenthsis. Javascript
 doesn't check that the number of parameter matches, so leaving off the
 count is okay; `list()` will run the default number of list lines
-&mdash; 5 before the current line, the current line and 4 after the
+&ndash; 5 before the current line, the current line and 4 after the
 current line.
 
 To make things a little more confusing, there are the debugger
