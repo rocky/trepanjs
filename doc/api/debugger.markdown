@@ -96,21 +96,21 @@ prints the active watchers. To remove a watcher, type
 
 ### Stepping Commands
 
-* `cont`, `c` - Continue execution
-* `next`, `n` - Step over
-* `step`, `s` - Step in
-* `finish`, - Step out
-* `pause` - Pause running code (like pause button in Developer Tools)
+* `cont`, `c` &mdash; Continue execution
+* `next`, `n` &mdash; Step over
+* `step`, `s` &mdash; Step in
+* `finish`, &mdash; Step out
+* `pause` &mdash; Pause running code (like pause button in Developer Tools)
 
 ### Breakpoints
 
-* `setBreakpoint()`, `sb()` - Set breakpoint on current line
-* `setBreakpoint(line)`, `sb(line)` - Set breakpoint on specific line
-* `setBreakpoint('fn()')`, `sb(...)` - Set breakpoint on a first statement in
+* `setBreakpoint()`, `sb()` &mdash; Set breakpoint on current line
+* `setBreakpoint(line)`, `sb(line)` &mdash; Set breakpoint on specific line
+* `setBreakpoint('fn()')`, `sb(...)` &mdash; Set breakpoint on a first statement in
 functions body
-* `setBreakpoint('script.js', 1)`, `sb(...)` - Set breakpoint on first line of
+* `setBreakpoint('script.js', 1)`, `sb(...)` &mdash; Set breakpoint on first line of
 script.js
-* `clearBreakpoint`, `cb(...)` - Clear breakpoint
+* `clearBreakpoint`, `cb(...)` &mdash; Clear breakpoint
 
 It is also possible to set a breakpoint in a file (module) that
 isn't loaded yet:
@@ -138,21 +138,21 @@ isn't loaded yet:
 
 ### Info
 
-* `backtrace`, `bt` - Print backtrace of current execution frame
+* `backtrace`, `bt` &mdash; Print backtrace of current execution frame
 * `list(5)` &mdash; List scripts source code with 5 line context (5 lines before and
 4 after)
 * `watch(expr)` &mdash; Add expression to watch list
 * `unwatch(expr)` &mdash; Remove expression from watch list
 * `watchers` &mdash; List all watchers and their values (automatically listed on each
 breakpoint)
-* `shell` - Open node repl but evaluation is in debugging script's context.
+* `shell` &mdash; Open node repl but evaluation is in debugging script's context.
 
 ### Execution control
 
 * `run` &mdash; Run script (automatically runs on debugger's start)
 * `restart` &mdash; Restart script
 * `kill` &mdash; Kill child Javascript process
-* `quit` `q`, &mdash terminate debugger
+* `quit` `q`, &mdash; terminate debugger
 * `exit` &mdash like `quit` but you pass a return code
 
 ### Various
@@ -170,8 +170,8 @@ Once a process has been set in debug mode with this it can be connected to
 with the trepanjsger. Either connect to the `pid` or the URI to the debugger.
 The syntax is:
 
-* `trepanjs -p <pid>` - Connects to the process via the `pid`
-* `trepanjs <URI>` - Connects to the process via the URI such as localhost:5858
+* `trepanjs -p <pid>` &mdash; Connects to the process via the `pid`
+* `trepanjs <URI>` &mdash; Connects to the process via the URI such as localhost:5858
 
 # Differences from gdb and the Trepanning debugger family
 
