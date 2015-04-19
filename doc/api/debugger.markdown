@@ -145,14 +145,15 @@ isn't loaded yet:
 * `unwatch(expr)` &mdash; Remove expression from watch list
 * `watchers` &mdash; List all watchers and their values (automatically listed on each
 breakpoint)
-* `repl` - Open debugger's repl for evaluation in debugging script's context
+* `shell` - Open node repl but evaluation is in debugging script's context.
 
 ### Execution control
 
 * `run` &mdash; Run script (automatically runs on debugger's start)
 * `restart` &mdash; Restart script
-* `kill` &mdash; Kill script
-* `quit` `q`, `exit` &mdash terminate debugger
+* `kill` &mdash; Kill child Javascript process
+* `quit` `q`, &mdash terminate debugger
+* `exit` &mdash like `quit` but you pass a return code
 
 ### Various
 
@@ -200,3 +201,16 @@ doesn't check that the number of parameter matches, so leaving off the
 count is okay; `list()` will run the default number of list lines
 &mdash; 5 before the current line, the current line and 4 after the
 current line.
+
+To make things a little more confusing, there are the debugger
+commands that *don't* take any arguments don't allow
+parenthesis. These are the commands *quit*, *step*, *next*, *finish*,
+*version*, among others. If you give parenthesis here, you'll get an error:
+
+    version()
+    TypeError: Property 'version' of object #<Object> is not a function
+    at repl:1:1
+	...
+    3.14.5.9
+
+Again, down the line I hope to sort some of this out.
