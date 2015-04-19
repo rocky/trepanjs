@@ -175,11 +175,36 @@ The syntax is:
 
 # Differences from gdb and the Trepanning debugger family
 
-Over time I hope to reduce the differences, and right now there are
-many.  But a few general observtions. The most obvious difference is
-that commands that get evaluated are Javascript commands. So when you
-need to pass arguments to a debugger command you enclose it in parenthesis.
-For example:
+For those that are used to the *nodejs* debugger command set, note that I've added an
+*alias* command you used to get those other names in. Here is a table if differences:
+
+<table>
+  <tr>
+    <thead>trepanjs</thead>
+    <thead>nodejs</thead>
+  </tr>
+  <tr>
+    <td>infoFiles</td>
+    <td>scripts</td>
+  </tr>
+  <tr>
+    <td>finish</td>
+    <td>out</td>
+  </tr>
+  <tr>
+    <td>shell</td>
+    <td>repl</td>
+  </tr>
+</table>
+
+Over time this table may grow, and the differences between this and
+other trepan debugger shrink. There is a ways to go to get this be
+more like gdb.
+
+Afew general observtions. The most obvious difference is that commands
+that get evaluated are Javascript commands. So when you need to pass
+arguments to a debugger command you enclose it in parenthesis.  For
+example:
 
     list(5)  // lists 5 lines
 
@@ -189,28 +214,7 @@ Running `list 5` as you might do in gdb will produce an error like this:
     SyntaxError: Unexpected number
         at Interface.controlEval ...
 
-Running list *without* the parentheses produces something else that may
-seem weird at first:
-
-    (trepanjs) list
-	[Function]
-
-What's going on here is the debugger is reporting that `list` is a
-valid function; you need to invoke it with parenthsis. Javascript
-doesn't check that the number of parameter matches, so leaving off the
-count is okay; `list()` will run the default number of list lines
-&ndash; 5 before the current line, the current line and 4 after the
-current line.
-
-To make things a little more confusing, there are the debugger
-commands that *don't* take any arguments don't allow
-parenthesis. These are the commands *quit*, *step*, *next*, *finish*,
-*version*, among others. If you give parenthesis here, you'll get an error:
-
-    version()
-    TypeError: Property 'version' of object #<Object> is not a function
-    at repl:1:1
-	...
-    3.14.5.9
-
-Again, down the line I hope to sort some of this out.
+In cases, like the *list* command, where all parameters are optional,
+it is okay to leave off the parenthesis. The evaluator will detect
+that parenthesis were left off, and then supply an empty set. So
+`list` will effectively be turned into `list()`.
