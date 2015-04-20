@@ -1,4 +1,20 @@
+##### Table of Contents
+
+* [Debugger](#debugger)
+  * [Example](#example)
+  *  [Watchers](#watchers)
+  * [Command Reference](#cmd-ref)
+    * [Stepping](#stepping)
+    * [Breakpoints](#brkpts)
+    * [Info](#info)
+    * [Execution control](#ctrl)
+    * [Various](#various)
+  * [Advanced Usage](#advanced)
+  * [Differences from gdb and the Trepanning debugger family](#diff)
+
+<a name="debugger">
 # Debugger
+</a>
 
     Stability: 3 - Beta
 
@@ -11,7 +27,9 @@ have forked the built-in debugger client in nodejs to adapt it to be
 more featureful and follow the *gdb* and *trepan* command set better.
 
 
+<a name="example">
 ## Example
+</a>
 
 To use this debugger, run the `trepanjs` script. For example:
 
@@ -33,6 +51,7 @@ breakpoint.
 
 For example, suppose `myscript.js` looked like this:
 
+```javascript
     // myscript.js
     x = 5;
     setTimeout(function () {
@@ -40,6 +59,7 @@ For example, suppose `myscript.js` looked like this:
       console.log("world");
     }, 1000);
     console.log("hello");
+```
 
 Then once the debugger is run, it will break on line 4.
 
@@ -81,6 +101,7 @@ using the debugger's *eval()* command, e.g. `eval('x')
 The `next` command steps over to the next line. There are a few other
 commands available and more to come. Type `help` to see others.
 
+<a name="watchers"/>
 ## Watchers
 
 You can watch expression and variable values while debugging your code.
@@ -92,8 +113,10 @@ To start watching an expression, type `watch("my_expression")`. `watchers`
 prints the active watchers. To remove a watcher, type
 `unwatch("my_expression")`.
 
-## Command reference
+<a name="cmd-ref"/>
+## Command Reference
 
+<a name="stepping"/>
 ### Stepping Commands
 
 * `cont`, `c` &ndash; Continue execution
@@ -102,6 +125,7 @@ prints the active watchers. To remove a watcher, type
 * `finish`, &ndash; Step out
 * `pause` &ndash; Pause running code (like pause button in Developer Tools)
 
+<a name="brkpts"/>
 ### Breakpoints
 
 * `setBreakpoint()`, `sb()` &ndash; Set breakpoint on current line
@@ -136,6 +160,7 @@ isn't loaded yet:
      25
     debug>
 
+<a name="info"/>
 ### Info
 
 * `backtrace`, `bt` &ndash; Print backtrace of current execution frame
@@ -147,6 +172,7 @@ isn't loaded yet:
 breakpoint)
 * `shell` &ndash; Open node repl but evaluation is in debugging script's context.
 
+<a name="ctrl"/>
 ### Execution control
 
 * `run` &ndash; Run script (automatically runs on debugger's start)
@@ -154,13 +180,16 @@ breakpoint)
 * `kill` &ndash; Kill child Javascript process
 * `quit` `q`, `exit` &ndash; terminate debugger
 
+<a name="various"/>
 ### Various
 
 * `infoFiles` &ndash; List all loaded scripts
 * `showArgs` &ndash; debugged program invocation arguments. These are used on `run` and `restart`
 * `version` &ndash Display v8's version
 
+<a name="advanced"/>
 ## Advanced Usage
+</a>
 
 The V8 debugger can be enabled and accessed either by starting via *trepanjs*
 or by signaling an existing Node process with `SIGUSR1`.
@@ -172,6 +201,7 @@ The syntax is:
 * `trepanjs -p <pid>` &ndash; Connects to the process via the `pid`
 * `trepanjs <URI>` &ndash; Connects to the process via the URI such as localhost:5858
 
+<a name="diff"/>
 ## Differences from gdb and the Trepanning debugger family
 
 For those that are used to the *nodejs* debugger command set, note that I've added an
