@@ -213,6 +213,14 @@ For those that are used to the *nodejs* debugger command set, note that I've add
     <th>nodejs</th>
   </tr>
   <tr>
+    <td>display</td>
+    <td>watch</td>
+  </tr>
+  <tr>
+    <td>undisplay</td>
+    <td>unwatch</td>
+  </tr>
+  <tr>
     <td>infoFiles</td>
     <td>scripts</td>
   </tr>
