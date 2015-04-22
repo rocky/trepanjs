@@ -215,8 +215,8 @@ For those that are used to the *nodejs* debugger command set, note that I've add
     <th>nodejs</th>
   </tr>
   <tr>
-    <td>breakpoints</td>
     <td>infoBreakpoints</td>
+    <td>breakpoints</td>
   <tr>
     <td>display</td>
     <td>watch</td>
