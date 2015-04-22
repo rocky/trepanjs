@@ -2,12 +2,15 @@
 
 * [Debugger](#debugger)
   * [Example](#example)
-  *  [Watchers](#watchers)
+  *  [Displays](#displays)
   * [Command Reference](#cmd-ref)
     * [Stepping](#stepping)
     * [Breakpoints](#brkpts)
-    * [Info](#info)
+    * [Program State](#state)
     * [Execution control](#ctrl)
+    * [Set](#set)
+    * [Show](#show)
+    * [Info](#info)
     * [Various](#various)
   * [Advanced Usage](#advanced)
   * [Differences from gdb and the Trepanning debugger family](#diff)
@@ -36,7 +39,7 @@ To use this debugger, run the `trepanjs` script. For example:
     % trepanjs example/myscript.js
     debugger listening on port 5858
     connecting to port 5858... ok
-    (break in example/myscript.js:2)
+    break in example/myscript.js:2
       1 // myscript.js
     > 2 x = 5;
       3 setTimeout(function () {
@@ -67,51 +70,47 @@ Then once the debugger is run, it will break on line 4.
     node ./bin/trepanjs --no-highlight example/myscript.js 3 5
     debugger listening on port 5858
     connecting to port 5858... ok
-    (break in example/myscript.js:2)
+    break in example/myscript.js:2
       1 // myscript.js
     > 2 x = 5;
       3 setTimeout(function () {
-    (trepanjs) cont
+    (trepanjs) continue
     hello
-    (break in example/myscript.js:4)
+    break in example/myscript.js:4
       3 setTimeout(function () {
     > 4   debugger;
       5   console.log("world");
-    (trepanjs)
-    debug> next
-	(break in example/myscript.js:5)
+    (trepanjs) next
+	break in example/myscript.js:5
       4   debugger;
     > 5   console.log("world");
       6 }, 1000);
-    debug> shell
+    (trepanjs) shell
     Press Ctrl + C (SIGINT) to leave debug repl; .help gives REPL help
     > x
     5
     > 2+2
     %
 
-As shown above, we use the debugger command `cont` instead of the gdb
-command `continue` because *continue* is a Javascript reserved word.
-
 The `shell` command allows you to evaluate code remotely. Right now,
 leaving the Javascript REPL leaves the debugger as well. Without going
 into a fill REPL as the *shell* command , you can force evaluation
-using the debugger's *eval()* command, e.g. `eval('x')
+using the debugger's *eval()* command, e.g. `eval('x')`.
 
 The `next` command steps over to the next line. There are a few other
 commands available and more to come. Type `help` to see others.
 
-<a name="watchers"/>
-## Watchers
+<a name="displays"/>
+## Displays
 
-You can watch expression and variable values while debugging your code.
-On every breakpoint each expression from the watchers list will be evaluated
+You can display expression and variable values while debugging your code.
+On every breakpoint each expression from the display list will be evaluated
 in the current context and displayed just before the breakpoint's source code
 listing.
 
-To start watching an expression, type `watch("my_expression")`. `watchers`
+To start watching an expression, type `display("my_expression")`. `infoDisplay`
 prints the active watchers. To remove a watcher, type
-`unwatch("my_expression")`.
+`undisplay("my_expression")`.
 
 <a name="cmd-ref"/>
 ## Command Reference
@@ -119,10 +118,10 @@ prints the active watchers. To remove a watcher, type
 <a name="stepping"/>
 ### Stepping Commands
 
-* `cont`, `c` &ndash; Continue execution
+* `cont`, `continue`, `c` &ndash; Continue execution
 * `next`, `n` &ndash; Step over
 * `step`, `s` &ndash; Step in
-* `finish`, &ndash; Step out
+* `finish`, `fin` &ndash; Step out
 * `pause` &ndash; Pause running code (like pause button in Developer Tools)
 
 <a name="brkpts"/>
@@ -146,30 +145,27 @@ isn't loaded yet:
       1 var mod = require('./mod.js');
       2 mod.hello();
       3 mod.hello();
-    debug> setBreakpoint('mod.js', 23)
+    (trepanjs) setBreakpoint('mod.js', 23)
     Warning: script 'mod.js' was not loaded yet.
       1 var mod = require('./mod.js');
       2 mod.hello();
       3 mod.hello();
-    debug> c
+    (trepanjs) c
     break in test/fixtures/break-in-module/mod.js:23
      21
      22 exports.hello = function() {
      23   return 'hello from module';
      24 };
      25
-    debug>
+    (trepanjs)
 
-<a name="info"/>
-### Info
+<a name="state"/>
+### Program State
 
 * `backtrace`, `bt` &ndash; Print backtrace of current execution frame
-* `list(5)` &ndash; List scripts source code with 5 line context (5 lines before and
-4 after)
-* `watch(expr)` &ndash; Add expression to watch list
-* `unwatch(expr)` &ndash; Remove expression from watch list
-* `watchers` &ndash; List all watchers and their values (automatically listed on each
-breakpoint)
+* `list()` &ndash; List scripts source code. You can also give a starting line
+and an ending line breakpoint like this: `list(43,45)`. If the ending line is less than
+the starting line, then it is taken to be a count. So `list(43,3)` is the same thing.
 * `shell` &ndash; Open node repl but evaluation is in debugging script's context.
 
 <a name="ctrl"/>
@@ -177,15 +173,21 @@ breakpoint)
 
 * `run` &ndash; Run script (automatically runs on debugger's start)
 * `restart` &ndash; Restart script
-* `kill` &ndash; Kill child Javascript process
-* `quit` `q`, `exit` &ndash; terminate debugger
+* `quit` `q`, `exit` &ndash; terminate debugger. You can pass a number to set the exit code. For example `quit(1)` will quit with exit code 1. The default exit code is 0.
 
-<a name="various"/>
-### Various
+<a name="show"/>
+### Show
 
+* `show('args')` &ndash; debugged program invocation arguments. These are used on `run` and `restart`
+* `show('listSize')` &ndash; number of lines displayed in a `list` command
+* `show('version')` &ndash; Display trepanjs' and v8's version
+* `show('width)` &ndash; terminal width
+
+<a name="info"/>
+### Info
+* `infoBreakpoints` &ndash; List registered breakpoints
+* `infoDisplay` &ndash; List all displays
 * `infoFiles` &ndash; List all loaded scripts
-* `showArgs` &ndash; debugged program invocation arguments. These are used on `run` and `restart`
-* `version` &ndash Display v8's version
 
 <a name="advanced"/>
 ## Advanced Usage
@@ -235,6 +237,10 @@ For those that are used to the *nodejs* debugger command set, note that I've add
     <td>shell</td>
     <td>repl</td>
   </tr>
+  <tr>
+    <td>show('version')</td>
+    <td>version</td>
+  </tr>
 </table>
 
 Over time this table may grow, and the differences between this and
@@ -246,9 +252,10 @@ that get evaluated are Javascript commands. So when you need to pass
 arguments to a debugger command you enclose it in parenthesis.  For
 example:
 
-    list(5)  // lists 5 lines
+    list(5)  // list source code starting from line 5
 
-Running `list 5` as you might do in gdb will produce an error like this:
+Running `list 5` as you might do in *gdb* will produce an error like
+this:
 
     (trepanjs) list 5
     SyntaxError: Unexpected number
@@ -258,3 +265,11 @@ In cases, like the *list* command, where all parameters are optional,
 it is okay to leave off the parenthesis. The evaluator will detect
 that parenthesis were left off, and then supply an empty set. So
 `list` will effectively be turned into `list()`.
+
+And while on the topic of the *list* command...  Although the command
+name hasn't changed, the way it works behaves differently. The one
+here is more like *gdb*. Subsequent *list* commands continue from
+where you last left off. And if you supply a number parameter, it is
+the starting line location, not a number of lines before and after the
+current line. To specify how many lines to list, use `set(listSize,
+<count>)`.

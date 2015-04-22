@@ -8,8 +8,13 @@ Code is derived from nodejs's [lib/_debugger.js](https://github.com/joyent/node/
 ## Installation
 
 ```
-npm install trepanjs --save
+npm install -g trepanjs
 ```
+or if you need to do this as root on a Unixy system:
+```
+sudo npm install -g trepanjs
+```
+
 
 ## More Info
 
