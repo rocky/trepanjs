@@ -92,9 +92,8 @@ Then once the debugger is run, it will break on line 4.
     > 2+2
     %
 
-The `shell` command allows you to evaluate code remotely. Right now,
-leaving the Javascript REPL leaves the debugger as well. Without going
-into a fill REPL as the *shell* command , you can force evaluation
+The `shell` command allows you to evaluate code remotely. Without going
+into a full REPL as the *shell* command , you can force evaluation
 using the debugger's *eval()* command, e.g. `eval('x')`.
 
 The `next` command steps over to the next line. There are a few other
@@ -106,7 +105,7 @@ commands available and more to come. Type `help` to see others.
 <a name="displays"/>
 ### Displays
 
-* `display`, &ndash; add a display expression
+* `display` &ndash; add a display expression
 * `undisplay` &ndash; remove a previously set display expression
 
 You can display expression and variable values while debugging your code.
