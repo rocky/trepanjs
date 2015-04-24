@@ -265,6 +265,6 @@ Running `list 5` as you might do in *gdb* will produce an error like this:
 In cases, like the *list* command, where all parameters are optional, it is okay to leave off the parenthesis. The evaluator will detect that parenthesis were left off, and then supply an empty set. So `list` will effectively be turned into `list()`.
 
 And while on the topic of the *list* command...  Although the command name hasn't changed, the way it works behaves differently. The one
-here is more like *gdb*. Subsequent *list* commands continue from where you last left off. And if you supply a number parameter, it is the starting line location, not a number of lines before and after the current line. To specify how many lines to list, use `set(listSize, <count>)`.
+here is more like *gdb*. Subsequent *list* commands continue from where you last left off. And if you supply a number parameter, it is the starting line location, not a number of lines before and after the current line. To specify how many lines to list, use `set('listSize', <count>)`.
 
 We retain the *setBreakpoint* command, but we add aliases *b*, and *break*. The reason *break*, and *continue* are aliases rather than the command name is that these are also JavaScript reserved words. We have some fancy magic for taking your input transforming it for aliases. We however don't do that for command names.
