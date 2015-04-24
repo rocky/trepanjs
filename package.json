@@ -11,7 +11,7 @@
     },
     "dependencies": {
 	"nopt": "*",
-	"marked-terminal": "*",
+	"marked-terminal": "*"
     },
     "directories": {
 	"example": "example"
