@@ -10,7 +10,8 @@
 	"url": "https://github.com/rocky/trepanjs/issues"
     },
     "dependencies": {
-	"nopt": "*"
+	"nopt": "*",
+	"marked-terminal": "*",
     },
     "directories": {
 	"example": "example"
