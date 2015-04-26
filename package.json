@@ -1,6 +1,6 @@
 {
     "name": "trepanjs",
-    "version": "0.1.5",
+    "version": "0.1.6",
     "description": "A gdb-like debugger for nodejs. It is in the style of the trepanning debuggers.",
     "author": "Rocky Bernstein <rockyb@rubyforge.org>",
     "bin": {
@@ -25,7 +25,7 @@
     ],
     "repository": {
 	"type": "git",
-	"url": "https://github.org/rocky/trepanjs"
+	"url": "https://github.com/rocky/trepanjs"
     },
     "scripts": {
 	"test": "echo No tests yet :-("
