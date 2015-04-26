@@ -11,6 +11,7 @@
     },
     "dependencies": {
 	"nopt": "*",
+	"consolehighlighter": "*",
 	"marked-terminal": "*"
     },
     "directories": {
