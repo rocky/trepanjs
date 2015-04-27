@@ -1,5 +1,11 @@
+release 0.1.6 2015-04-26
+------------------------
+- more help markup
+- wrong github link
+
+
 release 0.1.5 2015-04-26
--------------------------
+------------------------
 - syntax highlight source code lines
 - show aliases in help
 - see if port is in use before spawning listner
