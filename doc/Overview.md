@@ -102,6 +102,8 @@ commands available and more to come. Type `help` to see others.
 <a name="cmd-ref"/>
 ## Command Reference
 
+*Note:* this lags a little behind in detail from what you can get from the help inside the debugger.
+
 <a name="displays"/>
 ### Displays
 
@@ -169,6 +171,7 @@ isn't loaded yet:
 and an ending line breakpoint like this: `list(43,45)`. If the ending line is less than
 the starting line, then it is taken to be a count. So `list(43,3)` is the same thing.
 * `shell` &ndash; Open node repl but evaluation is in debugging script's context.
+* `eval`, `eval?` &ndash; evaluate in the context of the debugged program.
 
 <a name="ctrl"/>
 ### Execution control
@@ -256,15 +259,9 @@ example:
 
     list(5)  // list source code starting from line 5
 
-Running `list 5` as you might do in *gdb* will produce an error like this:
-
-    (trepanjs) list 5
-    SyntaxError: Unexpected number
-        at Interface.controlEval ...
-
-In cases, like the *list* command, where all parameters are optional, it is okay to leave off the parenthesis. The evaluator will detect that parenthesis were left off, and then supply an empty set. So `list` will effectively be turned into `list()`.
+As a special hack, an evaluation preprocessing step turns `list 5` info `list(5)` and `list` into `list()`. But it doesn't catch  more elaborate things like `set('listSize', 10)` or adding quotes around parameters such as would be needed for `help *` to make it `help '*'` or `help('*')`.
 
 And while on the topic of the *list* command...  Although the command name hasn't changed, the way it works behaves differently. The one
-here is more like *gdb*. Subsequent *list* commands continue from where you last left off. And if you supply a number parameter, it is the starting line location, not a number of lines before and after the current line. To specify how many lines to list, use `set('listSize', <count>)`.
+here is more like *gdb*. Subsequent *list* commands continue from where you last left off. And if you supply a number parameter, it is the starting line location, not a number of lines before and after the current line. A optional second parameter gives the ending line to stop listing at; however if that number is less than the starting line it is interpreted as a number of lines to count instead.
 
 We retain the *setBreakpoint* command, but we add aliases *b*, and *break*. The reason *break*, and *continue* are aliases rather than the command name is that these are also JavaScript reserved words. We have some fancy magic for taking your input transforming it for aliases. We however don't do that for command names.
