@@ -1,3 +1,13 @@
+release 0.1.8 2015-04-28
+------------------------
+
+- Misc small listing things
+  * line prefixes are -> and **.
+  * prefix -> boldend if useColors.
+  * print location on switching frames
+  * common simplified
+
+
 release 0.1.7 2015-04-27
 ------------------------
 
