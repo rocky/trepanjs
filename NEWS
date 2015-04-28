@@ -6,6 +6,7 @@ release 0.1.8 2015-04-28
   * prefix -> boldend if useColors.
   * print location on switching frames
   * common simplified
+- store stop event, xx in -> call on frame switching
 
 
 release 0.1.7 2015-04-27
