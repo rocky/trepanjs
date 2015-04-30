@@ -180,19 +180,25 @@ the starting line, then it is taken to be a count. So `list(43,3)` is the same t
 * `restart` &ndash; Restart script
 * `quit` `q`, `exit` &ndash; terminate debugger. You can pass a number to set the exit code. For example `quit(1)` will quit with exit code 1. The default exit code is 0.
 
+<a name="set"/>
+### Set
+* `set('args')` &ndash; set  debugged program invocation arguments. These are used on `run` and `restart`
+* `set('listsize')` &ndash; set number of lines displayed in a `list` command
+* `show('width)` &ndash; set terminal width
+
 <a name="show"/>
 ### Show
 
 * `show('args')` &ndash; debugged program invocation arguments. These are used on `run` and `restart`
-* `show('listSize')` &ndash; number of lines displayed in a `list` command
+* `show('listsize')` &ndash; number of lines displayed in a `list` command
 * `show('version')` &ndash; Display trepanjs' and v8's version
 * `show('width)` &ndash; terminal width
 
 <a name="info"/>
 ### Info
-* `infoBreakpoints` &ndash; List registered breakpoints
-* `infoDisplay` &ndash; List all displays
-* `infoFiles` &ndash; List all loaded scripts
+* `info('breakpoints')` &ndash; List registered breakpoints
+* `info('display')` &ndash; List all displays
+* `info('files')` &ndash; List all loaded scripts
 
 <a name="advanced"/>
 ## Advanced Usage
@@ -220,7 +226,7 @@ For those that are used to the *nodejs* debugger command set, note that I've add
     <th>nodejs</th>
   </tr>
   <tr>
-    <td>infoBreakpoints</td>
+    <td>info('breakpoints')</td>
     <td>breakpoints</td>
   <tr>
     <td>display</td>
@@ -231,7 +237,7 @@ For those that are used to the *nodejs* debugger command set, note that I've add
     <td>unwatch</td>
   </tr>
   <tr>
-    <td>infoFiles</td>
+    <td>info('files')</td>
     <td>scripts</td>
   </tr>
   <tr>
@@ -259,7 +265,7 @@ example:
 
     list(5)  // list source code starting from line 5
 
-As a special hack, an evaluation preprocessing step turns `list 5` info `list(5)` and `list` into `list()`. But it doesn't catch  more elaborate things like `set('listSize', 10)` or adding quotes around parameters such as would be needed for `help *` to make it `help '*'` or `help('*')`.
+As a special hack, an evaluation preprocessing step turns `list 5` info `list(5)` and `list` into `list()`. But it doesn't catch  more elaborate things like `set('listsize', 10)` or adding quotes around parameters such as would be needed for `help *` to make it `help '*'` or `help('*')`.
 
 And while on the topic of the *list* command...  Although the command name hasn't changed, the way it works behaves differently. The one
 here is more like *gdb*. Subsequent *list* commands continue from where you last left off. And if you supply a number parameter, it is the starting line location, not a number of lines before and after the current line. A optional second parameter gives the ending line to stop listing at; however if that number is less than the starting line it is interpreted as a number of lines to count instead.
