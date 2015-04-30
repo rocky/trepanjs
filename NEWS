@@ -1,3 +1,12 @@
+release 0.2.0 2015-04-29
+------------------------
+  * set, show, and info commands are separate files. This means:
+  - they have expanded help
+  - are more uniform in parent command (set, show, info) handling
+  As a result:
+  - infoLine -> info('line), infoFiles -> info('files'), infoDisplay -> info('display')
+    but note setBreakpoint is still around.
+
 release 0.1.9 2015-04-29
 ------------------------
   * location indicatior file:line:num -> *file* at line line:num
