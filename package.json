@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "nopt": "*",
-    "consolehighlighter": "*",
-    "marked-terminal": "*"
+    "consolehighlighter": "^0.1.5",
+    "marked-terminal": "^1.4.0"
   },
   "directories": {
     "example": "example"
@@ -28,7 +28,7 @@
     "url": "https://github.com/rocky/trepanjs"
   },
   "scripts": {
-    "test": "echo No tests yet :-("
+    "test": "make test"
   },
   "devDependencies": {
     "chai": "^2.3.0",
