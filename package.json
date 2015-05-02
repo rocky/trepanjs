@@ -1,33 +1,37 @@
 {
-    "name": "trepanjs",
-    "version": "0.2.0",
-    "description": "A gdb-like debugger for nodejs. It is in the style of the trepanning debuggers.",
-    "author": "Rocky Bernstein <rockyb@rubyforge.org>",
-    "bin": {
-	"trepanjs": "./bin/trepanjs"
-    },
-    "bugs": {
-	"url": "https://github.com/rocky/trepanjs/issues"
-    },
-    "dependencies": {
-	"nopt": "*",
-	"consolehighlighter": "*",
-	"marked-terminal": "*"
-    },
-    "directories": {
-	"example": "example"
-    },
-    "license": "ISC",
-    "keywords": [
+  "name": "trepanjs",
+  "version": "0.2.0",
+  "description": "A gdb-like debugger for nodejs. It is in the style of the trepanning debuggers.",
+  "author": "Rocky Bernstein <rockyb@rubyforge.org>",
+  "bin": {
+    "trepanjs": "./bin/trepanjs"
+  },
+  "bugs": {
+    "url": "https://github.com/rocky/trepanjs/issues"
+  },
+  "dependencies": {
+    "nopt": "*",
+    "consolehighlighter": "*",
+    "marked-terminal": "*"
+  },
+  "directories": {
+    "example": "example"
+  },
+  "license": "ISC",
+  "keywords": [
     "debugger",
-	"gdb",
-	"trepan"
-    ],
-    "repository": {
-	"type": "git",
-	"url": "https://github.com/rocky/trepanjs"
-    },
-    "scripts": {
-	"test": "echo No tests yet :-("
-    }
+    "gdb",
+    "trepan"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rocky/trepanjs"
+  },
+  "scripts": {
+    "test": "echo No tests yet :-("
+  },
+  "devDependencies": {
+    "chai": "^2.3.0",
+    "mocha": "^2.2.4"
+  }
 }
