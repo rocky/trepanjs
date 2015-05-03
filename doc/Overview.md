@@ -12,7 +12,7 @@
     * [Show](#show)
     * [Info](#info)
     * [Various](#various)
-  * [Advanced Usage](#advanced)
+  * [Other ways to enter the debugger](#advanced)
   * [Differences from gdb and the Trepanning debugger family](#diff)
 
 <a name="debugger">
@@ -25,7 +25,7 @@
 
 V8 comes with an extensive debugger which is accessible out-of-process
 via a simple
-[TCP protocol](http://code.google.com/p/v8/wiki/DebuggerProtocol).  I
+[TCP protocol](https://code.google.com/p/v8-wiki/wiki/DebuggerProtocol).  I
 have forked the built-in debugger client in nodejs to adapt it to be
 more featureful and follow the *gdb* and *trepan* command set better.
 
@@ -201,13 +201,16 @@ the starting line, then it is taken to be a count. So `list(43,3)` is the same t
 * `info('files')` &ndash; List all loaded scripts
 
 <a name="advanced"/>
-## Advanced Usage
+## Other ways to enter the debugger
 </a>
 
-The V8 debugger can be enabled and accessed either by starting via *trepanjs*
-or by signaling an existing Node process with `SIGUSR1`.
+As we saw above, the V8 debugger can be enabled and accessed either by
+starting via *trepanjs*, but there are other ways go get into the
+debugger
 
-Once a process has been set in debug mode with this it can be connected to
+Using the `--debug-brk` command-line flags or by signaling an existing
+with `SIGUSR1` will cause the debugger go into debug mode.
+Once a process is in debug mode with this it can be connected to
 with trepanjs. Either connect to the `pid` or the URI to the debugger.
 The syntax is:
 
