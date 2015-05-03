@@ -1,5 +1,7 @@
 #: Run all tests
-test: test-mocha test-debugger
+test: test-mocha
+
+test-full: test-mocha test-debugger
 
 #: Run mocha tests
 test-mocha:
@@ -9,4 +11,4 @@ test-mocha:
 test-debugger:
 	python tools/test.py -- --mode=release debugger message
 
-.PHONY: test-mocha test-debugger
+.PHONY: test-mocha test-debugger test-full
