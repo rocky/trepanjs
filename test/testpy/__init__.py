@@ -27,10 +27,8 @@
 
 import test
 import os
-import shutil
 from shutil import rmtree
 from os import mkdir
-from glob import glob
 from os.path import join, dirname, exists
 import re
 
@@ -50,7 +48,7 @@ class SimpleTestCase(test.TestCase):
     self.additional_flags = additional
     if "NODE_PIPE_DIR" in os.environ:
       self.pipeTmpDir = join(os.environ["NODE_PIPE_DIR"], 'NodePipeTmp')
-  
+
   def AfterRun(self, result):
     # delete the whole tmp dir
     try:
@@ -84,7 +82,7 @@ class SimpleTestCase(test.TestCase):
           mkdir(self.pipeTmpDir);
       except:
         pass
-  
+
   def GetLabel(self):
     return "%s %s" % (self.mode, self.GetName())
 
@@ -130,11 +128,11 @@ class SimpleTestConfiguration(test.TestConfiguration):
   def ListTests(self, current_path, path, mode):
     all_tests = [current_path + [t] for t in self.Ls(join(self.root))]
     result = []
-    for test in all_tests:
-      if self.Contains(path, test):
-        file_path = join(self.root, reduce(join, test[1:], "") + ".js")
-        result.append(SimpleTestCase(test, file_path, mode, self.context, self,
-          self.additional_flags))
+    for mytest in all_tests:
+      if self.Contains(path, mytest):
+        file_path = join(self.root, reduce(join, mytest[1:], "") + ".js")
+        result.append(SimpleTestCase(mytest, file_path, mode, self.context,
+                                     self, self.additional_flags))
     return result
 
   def GetBuildRequirements(self):
@@ -164,8 +162,9 @@ class AddonTestConfiguration(SimpleTestConfiguration):
   def ListTests(self, current_path, path, mode):
     all_tests = [current_path + t for t in self.Ls(join(self.root))]
     result = []
-    for test in all_tests:
-      if self.Contains(path, test):
-        file_path = join(self.root, reduce(join, test[1:], "") + ".js")
-        result.append(SimpleTestCase(test, file_path, mode, self.context, self))
+    for mytest in all_tests:
+      if self.Contains(path, mytest):
+        file_path = join(self.root, reduce(join, mytest[1:], "") + ".js")
+        result.append(SimpleTestCase(mytest, file_path, mode, self.context,
+                                     self))
     return result
