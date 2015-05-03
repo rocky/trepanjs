@@ -1,5 +1,12 @@
-#: Run tests
-test:
+#: Run all tests
+test: test-mocha test-debugger
+
+#: Run mocha tests
+test-mocha:
 	./node_modules/.bin/mocha --reporter spec
 
-.PHONY: test
+#: Run debugger test framework from node
+test-debugger:
+	python tools/test.py -- --mode=release debugger message
+
+.PHONY: test-mocha test-debugger
