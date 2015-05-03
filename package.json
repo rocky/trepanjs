@@ -15,7 +15,10 @@
     "marked-terminal": "^1.4.0"
   },
   "directories": {
-    "example": "example"
+      "bin": "./bin",
+      "doc": "./doc",
+      "example": "./example",
+      "test": "./test"
   },
   "license": "ISC",
   "keywords": [
