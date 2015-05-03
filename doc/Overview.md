@@ -14,6 +14,7 @@
     * [Various](#various)
   * [Other ways to enter the debugger](#advanced)
   * [Differences from gdb and the Trepanning debugger family](#diff)
+  * [Debugger Command Syntax](#syntax)
 
 <a name="debugger">
 # Debugger
@@ -220,8 +221,20 @@ The syntax is:
 <a name="diff"/>
 ## Differences from gdb and the Trepanning debugger family
 
-For those that are used to the *nodejs* debugger command set, note that I've added an
-*alias* command you used to get those other names in. Here is a table of differences:
+For those that are used to the *nodejs* debugger command set, note
+that I've added an *alias* command you used to get those other names
+in.
+
+A number of the status and error messages are different as they more
+closely follow message in the other trepannning debuggers. Often give
+status is given a debugger command succeeds rather than the old
+Unix-style of no output just prompt.
+
+Frame-changing commands, *up*, *down*, and *frame* have been
+added. Evaluation changes with the context of the current frame set.
+
+### Command differences
+Here is a table of specific command differences:
 
 <table>
   <tr>
@@ -257,14 +270,13 @@ For those that are used to the *nodejs* debugger command set, note that I've add
   </tr>
 </table>
 
-Over time this table may grow, and the differences between this and
-other trepan debugger shrink. There is a ways to go to get this be
-more like *gdb*.
+<a name="syntax"/>
+## Debugger Command Syntax
 
-A few general observations. The most obvious difference is that commands
-that get evaluated are Javascript commands. So when you need to pass
-arguments to a debugger command you enclose it in parenthesis.  For
-example:
+The most obvious difference between this debugger and other *gdb*-like
+debuggers is that commands that get evaluated are Javascript
+commands. So when you need to pass arguments to a debugger command you
+enclose it in parenthesis.  For example:
 
     list(5)  // list source code starting from line 5
 
