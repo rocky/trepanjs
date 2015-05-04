@@ -29,7 +29,6 @@ function computedDisplayWidth() {
     }
     return width;
 }
-exports.computedDisplayWidth = computedDisplayWidth;
 
 var defaultOpts = {
     arrangeArray:    false,
@@ -41,7 +40,7 @@ var defaultOpts = {
     displayWidth:     computedDisplayWidth(),
     linePrefix:       '',
     lineSuffix:       "\n",
-    ljust:           true,
+    ljust:           null,
     termAdjust:      false
 };
 
@@ -74,7 +73,7 @@ function columnize(array, opts) {
 
     if (!Array.isArray(array)) {
 	throw '1st argument needs to be an Array';
-ppp    };
+    };
     var o = {};
 
     if (Object.keys(opts).length > 0) {
@@ -82,7 +81,7 @@ ppp    };
             o[key] = getOption(key, opts)
 	}
         if (o.arrangeArray) {
-            o.arrayPrefix  = '[';
+            o.array_prefix = '[';
             o.linePrefix   = ' ';
             o.lineSuffix   = ",\n";
             o.arraySuffix = "]\n";
@@ -92,6 +91,8 @@ ppp    };
     } else {
 	o = extend({}, defaultOpts);
     }
+    console.log(o); // XXXX
+
     if (o.colfmt) {
         array = array.map(function(i) {return util.format(o.colfmt, i)});
     } else {
@@ -103,8 +104,8 @@ ppp    };
         return "<empty>\n";
     } else if (size == 1)  {
         return util.format('%s%s%s\n',
-			   o.arrayPrefix, array[0],
-                           o.arraySuffix);
+			   (o.array_prefix, array[0],
+                            o.array_suffix));
     }
     if (o.displayWidth - o.linePrefix < 4) {
         o.displayWidth = o.linePrefix.length + 4;
@@ -143,6 +144,7 @@ ppp    };
                 break;
 	    }
 	}
+	util.print(util.format('XXX nrows: %d, ncols %d\n', nrows, ncols));
         // The smallest number of rows computed and the
         // max widths for each column has been obtained.
         // Now we just have to format each of the
@@ -177,11 +179,16 @@ ppp    };
     }
 
 }
-exports.columnize = columnize;
 
-if (process.argv[1] == __filename) {
-    var opts = {displayWidth: 20};
-    console.log(columnize([], opts));
-    console.log(columnize(["oneitem"], opts));
-    console.log(columnize(["one", "two", "three"], opts));
-}
+// console.log(computedDisplayWidth());
+// util.print(lpad('abc', 5), 'def\n');
+// util.print(rpad('abc', 5), 'def\n');
+// util.print(columnize([]));
+foo = ['123', '456', '789'];
+util.print(columnize(foo, {displayWidth: 8}));
+
+//geckos = ['bibrons', 'golden', 'madascar', 'leopard', 'mourning', 'suras', 'tokay'];
+//util.print(columnize(geckos, {displayWidth: 15}));
+
+// columnize(['a', 'ab'], {arrangeArray: true}); // XXX
+// columnize(['a', 'ab']); // XXX
