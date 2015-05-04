@@ -1,0 +1,72 @@
+.TH TREPANJS.JS "1" "2015" "" ""
+
+
+.SH "NAME"
+trepanjs \- a gdb-like debugger for nodejs
+
+.SH SYNOPSIS
+
+
+.B trepanjs
+[
+.B \-?
+|
+.B \-\-help
+]
+[
+.B \-v
+|
+.B \-\-version
+]
+[
+.B \-\-highlight
+|
+.B \-\-no-highlight
+]
+[
+.B \-\-host
+.I hostname
+]
+[
+.B \-\-port
+.I port number
+]
+[
+.B \-\-
+]
+[
+.I script.js
+[
+.I script-arguments
+]]
+
+.SH DESCRIPTION
+
+trepanjs is a gdb-like command-line debugger similar to the other trepanning debuggers
+for Python, Ruby, and Perl.
+
+.SH OPTIONS
+
+  -v, --version          print trepanjs's version
+
+  -?, --help             print rudimentary help
+
+  --port=NUMBER          debugger uses NUMBER to connect on
+
+  --host=IP-OR-NAME      connect to host at IP or DNS NAME
+
+  --highlight|--nohighlight  use terminal highlighting
+
+  --attach               connect to an existing process in debug mode
+
+
+.SH ENVIRONMENT VARIABLES
+
+.IP NODE_DISABLE_COLORS
+If set to 1 then colors will not be used in the debugger.
+
+.SH RESOURCES AND DOCUMENTATION
+
+github project: https://github.com/rocky/trepanjs
+
+The github wiki: https://github.com/rocky/trepanjs/wiki

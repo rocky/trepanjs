@@ -144,7 +144,7 @@ It is also possible to set a breakpoint in a file (module) that
 isn't loaded yet:
 
     % ./trepanjs test/fixtures/break-in-module/main.js
-    < debugger listening on port 5858
+    debugger listening on port 5858
     connecting to port 5858... ok
     break in test/fixtures/break-in-module/main.js:1
       1 var mod = require('./mod.js');
@@ -209,14 +209,20 @@ As we saw above, the V8 debugger can be enabled and accessed either by
 starting via *trepanjs*, but there are other ways go get into the
 debugger
 
-Using the `--debug-brk` command-line flags or by signaling an existing
-with `SIGUSR1` will cause the debugger go into debug mode.
-Once a process is in debug mode with this it can be connected to
-with trepanjs. Either connect to the `pid` or the URI to the debugger.
-The syntax is:
+Using either the `--debug`, or `--debug-brk` command-line flags or by
+signaling an existing with `SIGUSR1`, the debugger will go into
+debug mode.  Once a process is in debug mode with this it can be
+connected to with *trepanjs* using the `--attach` flag. For example:
 
-* `trepanjs -p <pid>` &ndash; Connects to the process via the `pid`
-* `trepanjs <URI>` &ndash; Connects to the process via the URI such as localhost:5858
+```console
+$ node --debug myprogram.js  # or node --debug-brk ...
+```
+
+In another terminal:
+
+```console
+$ trepanjs --attach # add --port or --host if needed
+```
 
 <a name="diff"/>
 ## Differences from gdb and the Trepanning debugger family
