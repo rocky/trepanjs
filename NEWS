@@ -1,12 +1,12 @@
 release 0.2.1 2015-05-1
 ------------------------
-  * Use --attach (replacings --pid) for attaching to an
-  existing nodejs process in debug mode
+  * Use --attach (replacing --pid) for attaching to an
+    existing nodejs process in debug mode
   * Revise docs again. Add a rudimentary manual page for trepanjs
   * Add automated tests and start moving node debugger tests
     from node
-  * show line count in info('files)
-  * list warns when line listing is too large
+  * show line count in info('files')
+  * 'list' warns when starting line is too large
   * revise package.json
 
 release 0.2.0 2015-04-29

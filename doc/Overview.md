@@ -2,6 +2,8 @@
 
 * [Debugger](#debugger)
   * [Example](#example)
+  * [Other ways to enter the debugger](#advanced)
+  * [Debugger Command Syntax](#syntax)
   * [Command Reference](#cmd-ref)
     * [Displays](#displays)
     * [Stepping](#stepping)
@@ -12,9 +14,7 @@
     * [Show](#show)
     * [Info](#info)
     * [Various](#various)
-  * [Other ways to enter the debugger](#advanced)
   * [Differences from gdb and the Trepanning debugger family](#diff)
-  * [Debugger Command Syntax](#syntax)
 
 <a name="debugger">
 # Debugger
@@ -40,10 +40,10 @@ To use this debugger, run the `trepanjs` script. For example:
     % trepanjs example/myscript.js
     debugger listening on port 5858
     connecting to port 5858... ok
-    break in example/myscript.js:2
-      1 // myscript.js
-    > 2 x = 5;
-      3 setTimeout(function () {
+    break in example/myscript.js at line 2
+       1 // myscript.js
+    -> 2 x = 5;
+       3 setTimeout(function () {
 
 What's going on above is that a child process of the debugger is
 spawned and that then stops and listens on port 5858 for debugger commands.
@@ -71,27 +71,31 @@ Then once the debugger is run, it will break on line 4.
     node ./bin/trepanjs --no-highlight example/myscript.js 3 5
     debugger listening on port 5858
     connecting to port 5858... ok
-    break in example/myscript.js:2
-      1 // myscript.js
-    > 2 x = 5;
-      3 setTimeout(function () {
+    break in example/myscript.js at line 2
+       1 // myscript.js
+    -> 2 x = 5;
+       3 setTimeout(function () {
     (trepanjs) continue
     hello
-    break in example/myscript.js:4
-      3 setTimeout(function () {
-    > 4   debugger;
-      5   console.log("world");
+    break in example/myscript.js at line 4
+       3 setTimeout(function () {
+    -> 4   debugger;
+       5   console.log("world");
     (trepanjs) next
-	break in example/myscript.js:5
-      4   debugger;
-    > 5   console.log("world");
-      6 }, 1000);
-    (trepanjs) shell
-    Press Ctrl + C (SIGINT) to leave debug repl; .help gives REPL help
+	break in example/myscript.js at line 5
+       4   debugger;
+    -> 5   console.log("world");
+       6 }, 1000);
+       (trepanjs) shell
+    Type .quit or press Ctrl + C (SIGINT) to leave shell.
+    Ctrl + D (EOF) leaves everything!
+    .help gives REPL help
     > x
     5
     > 2+2
-    %
+	4
+	> .quit
+    (trepanjs)
 
 The `shell` command allows you to evaluate code remotely. Without going
 into a full REPL as the *shell* command , you can force evaluation
@@ -99,6 +103,46 @@ using the debugger's *eval()* command, e.g. `eval('x')`.
 
 The `next` command steps over to the next line. There are a few other
 commands available and more to come. Type `help` to see others.
+
+<a name="advanced"/>
+## Other ways to enter the debugger
+</a>
+
+As we saw above, the V8 debugger can be enabled and accessed either by
+starting via *trepanjs*, but there are other ways go get into the
+debugger
+
+Using either the `--debug`, or `--debug-brk` command-line flags or by
+signaling an existing with `SIGUSR1`, the debugger will go into
+debug mode.  Once a process is in debug mode with this it can be
+connected to with *trepanjs* using the `--attach` flag. For example:
+
+```console
+$ node --debug myprogram.js  # or node --debug-brk ...
+```
+
+In another terminal:
+
+```console
+$ trepanjs --attach # add --port or --host if needed
+```
+
+<a name="syntax"/>
+## Debugger Command Syntax
+
+The most obvious difference between this debugger and other *gdb*-like
+debuggers is that commands that get evaluated are Javascript
+commands. So when you need to pass arguments to a debugger command you
+enclose it in parenthesis.  For example:
+
+    list(5)  // list source code starting from line 5
+
+As a special hack, an evaluation preprocessing step turns `list 5` info `list(5)` and `list` into `list()`. But it doesn't catch  more elaborate things like `set('listsize', 10)` or adding quotes around parameters such as would be needed for `help *` to make it `help '*'` or `help('*')`.
+
+And while on the topic of the *list* command...  Although the command name hasn't changed, the way it works behaves differently. The one
+here is more like *gdb*. Subsequent *list* commands continue from where you last left off. And if you supply a number parameter, it is the starting line location, not a number of lines before and after the current line. A optional second parameter gives the ending line to stop listing at; however if that number is less than the starting line it is interpreted as a number of lines to count instead.
+
+We retain the *setBreakpoint* command, but we add aliases *b*, and *break*. The reason *break*, and *continue* are aliases rather than the command name is that these are also JavaScript reserved words. We have some fancy magic for taking your input transforming it for aliases. We however don't do that for command names.
 
 <a name="cmd-ref"/>
 ## Command Reference
@@ -201,29 +245,6 @@ the starting line, then it is taken to be a count. So `list(43,3)` is the same t
 * `info('display')` &ndash; List all displays
 * `info('files')` &ndash; List all loaded scripts
 
-<a name="advanced"/>
-## Other ways to enter the debugger
-</a>
-
-As we saw above, the V8 debugger can be enabled and accessed either by
-starting via *trepanjs*, but there are other ways go get into the
-debugger
-
-Using either the `--debug`, or `--debug-brk` command-line flags or by
-signaling an existing with `SIGUSR1`, the debugger will go into
-debug mode.  Once a process is in debug mode with this it can be
-connected to with *trepanjs* using the `--attach` flag. For example:
-
-```console
-$ node --debug myprogram.js  # or node --debug-brk ...
-```
-
-In another terminal:
-
-```console
-$ trepanjs --attach # add --port or --host if needed
-```
-
 <a name="diff"/>
 ## Differences from gdb and the Trepanning debugger family
 
@@ -275,20 +296,3 @@ Here is a table of specific command differences:
     <td>version</td>
   </tr>
 </table>
-
-<a name="syntax"/>
-## Debugger Command Syntax
-
-The most obvious difference between this debugger and other *gdb*-like
-debuggers is that commands that get evaluated are Javascript
-commands. So when you need to pass arguments to a debugger command you
-enclose it in parenthesis.  For example:
-
-    list(5)  // list source code starting from line 5
-
-As a special hack, an evaluation preprocessing step turns `list 5` info `list(5)` and `list` into `list()`. But it doesn't catch  more elaborate things like `set('listsize', 10)` or adding quotes around parameters such as would be needed for `help *` to make it `help '*'` or `help('*')`.
-
-And while on the topic of the *list* command...  Although the command name hasn't changed, the way it works behaves differently. The one
-here is more like *gdb*. Subsequent *list* commands continue from where you last left off. And if you supply a number parameter, it is the starting line location, not a number of lines before and after the current line. A optional second parameter gives the ending line to stop listing at; however if that number is less than the starting line it is interpreted as a number of lines to count instead.
-
-We retain the *setBreakpoint* command, but we add aliases *b*, and *break*. The reason *break*, and *continue* are aliases rather than the command name is that these are also JavaScript reserved words. We have some fancy magic for taking your input transforming it for aliases. We however don't do that for command names.
