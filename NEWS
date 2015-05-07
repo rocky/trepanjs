@@ -1,4 +1,13 @@
+release 0.2.3 2015-05-6
+------------------------
+ *  Backtrace shows function parameter names in trace.
+ *  list can handle source code in frames other than the top one.
+ *  add set('maxstack', ...), show('maxstack') to control
+    how many backtrace lines to list
+ *  shell help now adds leading '.' in showing command names
+
 release 0.2.2 2015-05-4
+------------------------
  * Add:
     - info('frame') - shows detailed frame information
     - info('locals') - lists local variables and types
