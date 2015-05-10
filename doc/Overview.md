@@ -97,9 +97,15 @@ Then once the debugger is run, it will break on line 4.
 	> .quit
     (trepanjs)
 
-The `shell` command allows you to evaluate code remotely. Without going
-into a full REPL as the *shell* command , you can force evaluation
-using the debugger's *eval()* command, e.g. `eval('x')`.
+If the first token of input is not a debugger command, the line is
+evaluated in the context of the debugged program. Of course there may
+be expressions that conflict with debugger commands. For example, you
+may have a variable called *s* and that will interfere with the
+debugger alias for *step*.
+
+The `shell` command allows you to evaluate code remotely. Without
+going into a full REPL as the *shell* command , you can force
+evaluation using the debugger's *eval()* command, e.g. `eval('s')`.
 
 The `next` command steps over to the next line. There are a few other
 commands available and more to come. Type `help` to see others.
@@ -259,6 +265,12 @@ Unix-style of no output just prompt.
 
 Frame-changing commands, *up*, *down*, and *frame* have been
 added. Evaluation changes with the context of the current frame set.
+
+Evaluation of input whose first token is not a debugger command is
+done in the context of the debugged program. This differes from *node
+debug*. If you have a variable *myvar* in your program, and you enter
+`myvar`, you'll see that value. In *node debug*, you'll get a
+reference error because *myvar* is not a debugger command.
 
 ### Command differences
 Here is a table of specific command differences:
