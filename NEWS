@@ -1,8 +1,8 @@
 release 0.2.4 2015-05-10
 
  *  (auto)evaluation of input is in the context of the debugged
-    program; not some reduce context state like it is in "node debug"
- *  can optionally give stack frame index, i in n
+    program, not some debugger-command context as is in "node debug"
+ *  the following can optionally give stack frame index, i:
     - info('local', i) - local variables "
     - info('args", i)  - parameters
     - info('frame', i) - full frame information
