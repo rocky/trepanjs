@@ -6,4 +6,4 @@ node_js:
   - "iojs"
 
 script:
-- make check
+- make test
