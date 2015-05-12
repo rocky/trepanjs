@@ -4,3 +4,6 @@ node_js:
   - "0.11"
   - "0.10"
   - "iojs"
+
+script:
+- ls -lR /home/travis/build/rocky && make test

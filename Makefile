@@ -1,5 +1,5 @@
 #: Run all tests
-test: check
+test: test-mocha
 
 check: test-mocha test-debugger
 
