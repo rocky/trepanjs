@@ -23,7 +23,8 @@ process.env.NODE_FORCE_READLINE = 1;
 
 var repl = require('./helper-debugger-repl.js');
 
-repl.startDebugger('breakpoints.js');
+var port = process.env.NODE_PORT || 13685;
+repl.startDebugger('breakpoints.js', port);
 
 var addTest = repl.addTest;
 

@@ -6,4 +6,4 @@ node_js:
   - "iojs"
 
 script:
-- ls -lR /home/travis/build/rocky && make test
+- make check

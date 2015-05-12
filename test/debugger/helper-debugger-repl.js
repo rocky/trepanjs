@@ -24,14 +24,13 @@ var common = require('../common');
 var assert = require('assert');
 var spawn = require('child_process').spawn;
 
-var port = common.PORT + 1337;
-
 var child;
 var buffer = '';
 var expected = [];
 var quit;
 
-function startDebugger(scriptToDebug) {
+function startDebugger(scriptToDebug, port) {
+  port || (port=common.PORT + 1337);
   scriptToDebug = process.env.NODE_DEBUGGER_TEST_SCRIPT ||
                   common.fixturesDir + '/' + scriptToDebug;
 
