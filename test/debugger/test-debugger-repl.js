@@ -21,7 +21,7 @@
 
 var repl = require('./helper-debugger-repl.js');
 
-repl.startDebugger('breakpoints.js');
+repl.startDebugger('breakpoints.js', 13684);
 
 var addTest = repl.addTest;
 
