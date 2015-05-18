@@ -12,7 +12,7 @@
     "dependencies": {
 	"nopt": "*",
 	"consolehighlighter": "^0.1.5",
-	"marked-terminal": "^1.4.0"
+	"marked-terminal": "^1.5.0"
     },
     "directories": {
 	"bin": "./bin",

@@ -1,9 +1,15 @@
+release 0.2.5 2015-05-18 - Lewis
+
+ *  Redo help text to make use of reflowed text feature added
+    in terminal-markdown v1.5.0
+ *  add 'info return' to a show function's return value
+
 release 0.2.4 2015-05-10
 
  *  (auto)evaluation of input is in the context of the debugged
     program, not some debugger-command context as is in "node debug"
  *  the following can optionally give stack frame index, i:
-    - info('local', i) - local variables "
+    - info('local', i) - local variables
     - info('args", i)  - parameters
     - info('frame', i) - full frame information
  *  reduce duplicate command prompts
