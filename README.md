@@ -1,7 +1,9 @@
-[![Build Status](https://travis-ci.org/rocky/trepanjs.png)](https://travis-ci.org/rocky/trepanjs)
-
 trepanjs
 ========
+
+[![NPM version][npm-image]][npm-url]
+[![Build status][travis-image]][travis-url]
+[![Downloads][downloads-image]][downloads-url]
 
 A more *gdb*-like debugger for [nodejs](https://nodejs.org/). It is in the style of the [trepanning](https://rubygems.org/gems/trepanning) [debuggers](https://pypi.python.org/pypi?name=trepan&:action=display).
 
@@ -21,3 +23,11 @@ sudo npm install -g trepanjs
 ## More Info
 
 See the [wiki](https://github.com/rocky/trepanjs/wiki/Overview).
+
+
+[npm-image]: https://img.shields.io/npm/v/trepanjs.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/trepanjs
+[travis-image]: https://img.shields.io/travis/rocky/trepanjs.svg?style=flat-square
+[travis-url]: https://travis-ci.org/rocky/trepanjs
+[downloads-image]: http://img.shields.io/npm/dm/trepanjs.svg?style=flat-square
+[downloads-url]: https://npmjs.org/package/trepanjs
