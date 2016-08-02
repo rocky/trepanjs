@@ -1,5 +1,5 @@
 #: Run tests
-test:
+test check:
 	make -C .. test
 
 .PHONY: test
