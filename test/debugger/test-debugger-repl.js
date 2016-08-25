@@ -71,7 +71,7 @@ addTest('break("setInterval()", "!(setInterval.flag++)")', [
 
 // Continue
 addTest('c', [
-  /break in node.js at line \d+/,
+  /break in *.* at line \d+/,
   /xx\d/, /\d/, /\d/
 ]);
 
