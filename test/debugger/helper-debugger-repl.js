@@ -132,7 +132,7 @@ function addTest(input, output) {
 }
 
 var handshakeLines = [
-  /listening on port \d+/,
+  /listening on .*\d+/,
   /connecting.* ok/
 ];
 

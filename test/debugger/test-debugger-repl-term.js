@@ -45,20 +45,20 @@ addTest('', [
 // continue
 addTest('c', [
     '',
-	/break in .* at line 12/,
-	/11/, /12/, /13/
-]);
-
-// should repeat continue
-addTest('', [
-    '',
 	/break in .* at line 5/,
 	/3/, /4/, /5/
 ]);
 
-// should repeat continue
-addTest('', [
-    '',
-	/break in .* at line 23/,
-	/22/, /23/, /24/
-]);
+// // should repeat continue
+// addTest('', [
+//     '',
+// 	/break in .* at line 5/,
+// 	/3/, /4/, /5/
+// ]);
+
+// // should repeat continue
+// addTest('', [
+//     '',
+// 	/break in .* at line 23/,
+// 	/22/, /23/, /24/
+// ]);

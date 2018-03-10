@@ -1,43 +1,44 @@
 {
-    "name": "trepanjs",
-    "version": "0.2.6",
-    "description": "A gdb-like debugger for nodejs. It is in the style of the trepanning debuggers.",
-    "author": "Rocky Bernstein <rockyb@rubyforge.org>",
-    "bin": {
-	"trepanjs": "./bin/trepanjs"
-    },
-    "bugs": {
-	"url": "https://github.com/rocky/trepanjs/issues"
-    },
-    "dependencies": {
-	"nopt": "*",
-	"consolehighlighter": "^0.1.5",
-	"marked-terminal": "^1.6.1"
-    },
-    "directories": {
-	"bin": "./bin",
-	"doc": "./doc",
-	"example": "./example",
-	"test": "./test"
-    },
-    "engines": {
-	"node": ">=0.10.0"
-    },
-    "license": "ISC",
-    "keywords": [
-	"debugger",
-	"gdb",
-	"trepan"
-    ],
-    "repository": {
-	"type": "git",
-	"url": "https://github.com/rocky/trepanjs"
-    },
-    "scripts": {
-	"test": "make test"
-    },
-    "devDependencies": {
-	"chai": "^2.3.0",
-	"mocha": "^2.2.4"
-    }
+   "name": "trepanjs",
+   "version": "0.2.6",
+   "description": "A gdb-like debugger for nodejs. It is in the style of the trepanning debuggers.",
+   "author": "Rocky Bernstein <rockyb@rubyforge.org>",
+   "bin": {
+      "trepanjs": "./bin/trepanjs"
+   },
+   "bugs": {
+      "url": "https://github.com/rocky/trepanjs/issues"
+   },
+   "dependencies": {
+      "consolehighlighter": "^0.1.5",
+      "marked": "^0.3.17",
+      "marked-terminal": "^1.6.1",
+      "nopt": "*"
+   },
+   "directories": {
+      "bin": "./bin",
+      "doc": "./doc",
+      "example": "./example",
+      "test": "./test"
+   },
+   "engines": {
+      "node": ">=0.10.0"
+   },
+   "license": "ISC",
+   "keywords": [
+      "debugger",
+      "gdb",
+      "trepan"
+   ],
+   "repository": {
+      "type": "git",
+      "url": "https://github.com/rocky/trepanjs"
+   },
+   "scripts": {
+      "test": "make test"
+   },
+   "devDependencies": {
+      "chai": "^2.3.0",
+      "mocha": "^2.2.4"
+   }
 }
