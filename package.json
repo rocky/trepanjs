@@ -11,7 +11,7 @@
    },
    "dependencies": {
       "consolehighlighter": "^0.1.5",
-      "marked": "^0.3.17",
+      "marked": "~> 4.0.10",
       "marked-terminal": "^1.6.1",
       "nopt": "*"
    },
